@@ -28,8 +28,13 @@ module.exports = function (app) {
 
       // Proposition: We want each new id to be one greater than the last elements id
       // newNote.id = database.length + 1;
-      const lastElementId = database[database.length - 1].id;
-      newNote.id = lastElementId + 1;
+      //If there are no notes, you end up breaking because you can't make a new note id.
+      if (database.length === 0) {
+        newNote.id = 1;
+      } else {
+        const lastElementId = database[database.length - 1].id;
+        newNote.id = lastElementId + 1;
+      }
 
       database.push(newNote);
 
@@ -55,6 +60,11 @@ module.exports = function (app) {
 
       database = JSON.parse(database);
 
+      //filter keeps everything for which the function in filter returns true.
+      var newDatabase = database.filter((note) => {
+        return note.id !== id;
+      });
+
       //where filter would go
       // let newDatabase = [];
       // for (var i = 0; i < database.length; i++) {
@@ -63,7 +73,7 @@ module.exports = function (app) {
       //   }
       // }
 
-      // newDatabase = JSON.stringify(newDatabase);
+      newDatabase = JSON.stringify(newDatabase);
 
       fs.writeFile("db/db.json", newDatabase, function (err) {
         if (err) throw err;
