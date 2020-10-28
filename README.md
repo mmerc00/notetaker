@@ -13,12 +13,3 @@ Melissa Mercado
 
 License N/A
 
-Acknowledgements
-Ben Wright
-Justin Pinero
-Ben Benson (Tutor)
-Cammryne Sullivan
-James Rowe
-Justin Ramirez
-James Kim
-Mike Haber
